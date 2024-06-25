@@ -1,22 +1,16 @@
 class Solution:
     def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:
-        original,result=0, 0
-        dict={}
-        for i in range(len(grumpy)):
+        result, temp, temp_ = 0, 0, 0
+        for i in range(len(customers)):
             if grumpy[i]==0:
-                original+=customers[i]
-            else:
-                dict[i]=customers[i]
-                
-        if len(dict)==0:
-            return original
+                result+=customers[i]
+            if grumpy[i]==1:
+                temp+=customers[i]
 
-        for idx in dict:
-            temp=original
-            for nidx in range(idx,idx+minutes):
-                if nidx in dict:
-                    temp+=dict[nidx]
+            if i>=minutes:
+                if grumpy[i-minutes]==1:
+                    temp-=customers[i-minutes]
             
-            result=max(result,temp)
-
-        return result
+            temp_=max(temp_,temp)
+        
+        return result+temp_
