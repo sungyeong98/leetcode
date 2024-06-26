@@ -4,7 +4,7 @@ select
                 select
                     salary
                 from (
-                    select
+                    select distinct
                         salary,
                         dense_rank() over (order by salary desc) as rk
                     from Employee
