@@ -1,14 +1,5 @@
-select
-    ifnull(
-            (
-                select
-                    salary
-                from (
-                    select distinct
-                        salary,
-                        dense_rank() over (order by salary desc) as rk
-                    from Employee
-                ) temp
-                where rk=2
-            ),
-    null) as SecondHighestSalary 
+select (
+select distinct salary 
+from employee
+order by salary desc
+  limit 1 offset 1) as SecondHighestSalary
