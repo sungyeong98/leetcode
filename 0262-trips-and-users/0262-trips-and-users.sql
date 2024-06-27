@@ -1,10 +1,11 @@
 with temp as (
     select 
-        client_id, request_at,
+        request_at,
         case when status='completed' then 0 else 1 end as status
     from Trips
     where 
         client_id not in (select users_id from Users where banned='Yes') and
+        driver_id not in (select users_id from Users where banned='Yes') and
         request_at between "2013-10-01" and "2013-10-03"
 )
 select
