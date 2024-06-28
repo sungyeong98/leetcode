@@ -1,10 +1,8 @@
 from collections import defaultdict
 class Solution:
     def findCenter(self, edges: List[List[int]]) -> int:
-        temp=defaultdict(list)
-
+        temp=defaultdict(int)
         for i,j in edges:
-            temp[i].append(j)
-            temp[j].append(i)
-
-        return max(temp, key=lambda x:len(temp[x]))
+            temp[i]+=1
+            temp[j]+=1
+        return max(temp,key=lambda x:temp[x])
