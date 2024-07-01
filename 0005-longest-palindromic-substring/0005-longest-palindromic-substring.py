@@ -15,7 +15,7 @@ class Solution:
             if i<right:
                 dp[i]=min(right-i, dp[2*center-i])
 
-            while i-dp[i]-1>0 and i+dp[i]+1 <len(s) and s[i-dp[i]-1]==s[i+dp[i]+1]:
+            while i-dp[i]-1>=0 and i+dp[i]+1 <len(s) and s[i-dp[i]-1]==s[i+dp[i]+1]:
                 dp[i]+=1
 
             if i+dp[i]>right:
