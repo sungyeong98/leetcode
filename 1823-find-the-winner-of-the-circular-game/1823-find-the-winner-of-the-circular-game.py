@@ -1,5 +1,13 @@
 class Solution:
     def findTheWinner(self, n: int, k: int) -> int:
+        nums=list(range(n))
+        i=0
+
+        while len(nums)>1:
+            i=(i+k-1)%len(nums)
+            nums.pop(i)
+        return nums[0]+1
+        '''
         temp={i:[] for i in range(1,n+1)}
         for i in range(1,n+1):
             left=i-1 if i-1>0 else n
@@ -21,3 +29,4 @@ class Solution:
             temp[temp[prev][0]][1]=start
             temp[start][0]=temp[prev][0]
             temp[prev][0]=temp[prev][1]=0
+        '''
