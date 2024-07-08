@@ -2,6 +2,39 @@ from collections import Counter
 from itertools import combinations
 class Solution:
     def maxScoreWords(self, words: List[str], letters: List[str], score: List[int]) -> int:
+        def isValid(word,count):
+            wc=Counter(word)
+            for w in wc:
+                if wc[w]>count[w]:
+                    return False
+            return True
+
+        def backtrack(i, current_score, frequency):
+            if i==len(words):
+                return current_score
+            
+            max_score=backtrack(i+1, current_score, frequency)
+            word=words[i]
+
+            if isValid(word, frequency):
+                for w in word:
+                    frequency[w]-=1
+
+                max_score=max(max_score, 
+                            backtrack(i+1, current_score+word_scores[word], frequency))
+
+                for w in word:
+                    frequency[w]+=1
+                
+            return max_score
+        
+        word_scores={}
+        
+        for word in words:
+            word_scores[word]=sum(score[ord(c)-ord('a')] for c in word)
+        
+        return backtrack(0, 0, Counter(letters))
+        '''
         score_dict={chr(i+97):score[i] for i in range(len(score))}
         result=0
 
@@ -32,3 +65,4 @@ class Solution:
                     if temp>result:
                         result=temp
         return result
+        '''
