@@ -2,9 +2,13 @@ class Solution:
     def sortVowels(self, s: str) -> str:
         s=list(s)
         target=['a','e','i','o','u','A','E','I','O','U']
-        for i in range(len(s)-1):
-            for j in range(i,len(s)):
-                if s[i] in target and s[j] in target:
-                    if s[i]>s[j]:
-                        s[i],s[j]=s[j],s[i]
+        temp, pos = [], []
+        for i in range(len(s)):
+            if s[i] in target:
+                pos.append(i)
+                temp.append(s[i])
+        temp.sort()
+        temp=iter(temp)
+        for i in pos:
+            s[i]=next(temp)
         return ''.join(s)
