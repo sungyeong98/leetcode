@@ -1,7 +1,9 @@
-from collections import defaultdict
+from collections import defaultdict, Counter
 from itertools import combinations
 class Solution:
     def countMaxOrSubsets(self, nums: List[int]) -> int:
+        #solution1
+        '''
         if len(nums)==1:
             return 1
         
@@ -13,3 +15,10 @@ class Solution:
                 temp[n]+=1
         
         return temp[max(temp.keys())]
+        '''
+
+        dp=Counter([0])
+        for i in nums:
+            for k,v in list(dp.items()):
+                dp[i|k]+=v
+        return dp[max(dp)]
