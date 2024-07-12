@@ -1,9 +1,9 @@
 class Solution:
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
         target=2**maximumBit-1
+        num=0
         result=[]
-        while nums:
-            n=reduce(lambda x,y:x^y,nums)
-            result.append(n^target)
-            nums.pop()
-        return result
+        for i in nums:
+            num^=i
+            result.append(num^target)
+        return result[::-1]
