@@ -1,9 +1,9 @@
 class Solution:
     def maximumStrongPairXor(self, nums: List[int]) -> int:
         result,n=0,len(nums)
-        for i in range(n-1):
-            for j in range(i+1,n):
-                if abs(nums[i]-nums[j])<=nums[i]:
+        for i in range(n):
+            for j in range(n):
+                if abs(nums[i]-nums[j])<=min(nums[i],nums[j]):
                     temp=nums[i]^nums[j]
                     if temp>result:
                         result=temp
