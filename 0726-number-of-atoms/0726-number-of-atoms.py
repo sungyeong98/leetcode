@@ -4,6 +4,7 @@ class Solution:
         element={}
         f=deque(list(formula))
         level=0
+        stack=[]
         while f:
             char=f.popleft()
             cnt=''
@@ -24,21 +25,21 @@ class Solution:
                         element[char][level]+=int(cnt)
             elif char=='(':
                 level+=1
+                stack.append(level)
             elif char==')':
                 while f and f[0].isdigit():
                     cnt+=f.popleft()
                 if not cnt:
                     cnt=1
 
+                cur_level=stack.pop()
                 for ele in element:
-                    if level in element[ele]:
-                        element[ele][level]*=int(cnt)
-                        for e in element[ele]:
-                            if e<level:
-                                element[ele][e]+=element[ele][level]
-                            elif e==level:
-                                if level-1 not in element[ele]:
-                                    element[ele]={level-1:element[ele][level]}
+                    if cur_level in element[ele]:
+                        element[ele][cur_level]*=int(cnt)
+                        if cur_level-1 not in element[ele]:
+                            element[ele][cur_level-1]=0
+                        element[ele][cur_level-1]+=element[ele][cur_level]
+                        del element[ele][cur_level]
                                 
                 level-=1
 
