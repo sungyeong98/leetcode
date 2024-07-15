@@ -8,7 +8,7 @@ class RecentCounter:
             self.log.append(t)
             return len(self.log)
         
-        while self.log[0]<t-3000:
+        while self.log and self.log[0]<t-3000:
             self.log.popleft()
         self.log.append(t)
         return len(self.log)
