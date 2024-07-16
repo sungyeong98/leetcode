@@ -3,5 +3,5 @@ class Solution:
         result, temp = 0, x^y
         while temp:
             result+=temp&1
-            result>>=1
+            temp>>=1
         return result
