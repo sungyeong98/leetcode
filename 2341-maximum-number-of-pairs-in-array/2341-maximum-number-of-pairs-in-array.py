@@ -8,7 +8,8 @@ class Solution:
                 result[0]+=1
             elif n[i]>2:
                 result[0]+=n[i]//2
-                result[1]+=1
+                if n[i]%2!=0:
+                    result[1]+=1
             else:
                 result[1]+=1
         return result
