@@ -5,7 +5,7 @@ class Solution:
             if i=='(':
                 stack.append(i)
             else:
-                if not stack:
+                if not stack or stack[-1]!='(':
                     stack.append(i)
                 else:
                     stack.pop()
