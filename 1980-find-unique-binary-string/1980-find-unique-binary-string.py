@@ -17,6 +17,6 @@ class Solution:
         n=len(nums[0])
         nums=[int(i,2) for i in nums]
         num=[i for i in range(2**n)]
-        result=list(set(num)-set(nums))
-        print(nums)
-        return bin(result[-1])[2:]
+        temp=list(set(num)-set(nums))
+        result=bin(temp[-1])[2:]
+        return '0'*(n-len(result))+result
