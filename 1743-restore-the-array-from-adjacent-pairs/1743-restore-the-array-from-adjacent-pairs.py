@@ -1,31 +1,24 @@
 class Solution:
     def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
-        n=len(adjacentPairs)
-
         temp=defaultdict(list)
         for i,j in adjacentPairs:
             temp[i].append(j)
             temp[j].append(i)
 
-        for num in temp:
-            visited=set()
-            visited.add(num)
-            
-            def dfs(cur_num,visited,road):
-                road.append(cur_num)
-                if len(road)==n+1:
-                    return road
-                for next_num in temp[cur_num]:
-                    if next_num not in visited:
-                        visited.add(next_num)
-                        result=dfs(next_num, visited, road)
-                        if result:
-                            return result
-                        road.pop()
-                        visited.remove(next_num)
-                return None
-            
-            road=dfs(num,visited,[])
+        start=None
+        for key,val in temp.items():
+            if len(val)==1:
+                start=key
+                break
+        
+        result, current, prev = [], start, None
+        while current is not None:
+            result.append(current)
+            next_nodes=temp[current]
 
-            if road:
-                return road
+            next_node=next_nodes[0] if next_nodes[0]!=prev else (next_nodes[1] if len(next_nodes)>1 else None)
+
+            prev=current
+            current=next_node
+        
+        return result
