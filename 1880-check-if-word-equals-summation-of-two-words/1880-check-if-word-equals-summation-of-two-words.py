@@ -7,6 +7,9 @@ class Solution:
             s.append(ord(i)-97)
         for i in targetWord:
             t.append(ord(i)-97)
-        if sum(f)+sum(s)==sum(t):
+        f=''.join(list(map(str,f)))
+        s=''.join(list(map(str,s)))
+        t=''.join(list(map(str,t)))
+        if int(f)+int(s)==int(t):
             return True
         return False
