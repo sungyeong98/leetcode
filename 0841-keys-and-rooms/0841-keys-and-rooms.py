@@ -1,12 +1,18 @@
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        keys=[i for i in range(len(rooms))]
-        temp=[0]
-        for i in range(len(rooms)):
-            for j in rooms[i]:
-                if i!=j:
-                    temp.append(j)
+        visited=set()
+        start=0
+        stack=[start]
+        visited.add(start)
+
+        while stack:
+            cur_key=stack.pop()
+
+            for next_key in rooms[cur_key]:
+                if next_key not in visited:
+                    visited.add(next_key)
+                    stack.append(next_key)
         
-        if len(set(keys)&set(temp))!=len(keys):
+        if len(visited)!=len(rooms):
             return False
         return True
