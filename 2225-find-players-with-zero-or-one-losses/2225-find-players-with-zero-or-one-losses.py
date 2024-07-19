@@ -28,3 +28,4 @@ class Solution:
                 one_loss.add(loser)
         no_loss_list = sorted(undefeated - one_loss)
         one_loss_list = sorted(one_loss - two_loss)
+        return [no_loss_list, one_loss_list]
