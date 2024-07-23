@@ -10,5 +10,5 @@ class Solution:
                 if i[1]<=j[1]:
                     result.append([max(i[0],j[0]),min(i[1],j[1])])
                 else:
-                    result.append([min(j[1],i[0]),max(j[1],i[0])])
+                    result.append([max(j[0],i[0]),max(j[1],i[0])])
         return result
