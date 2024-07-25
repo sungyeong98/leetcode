@@ -11,4 +11,6 @@ class Solution:
             else:
                 if n1=='1' and n2=='1':
                     result+=2
+                elif n1=='1' or n2=='1':
+                    result+=1
         return result
