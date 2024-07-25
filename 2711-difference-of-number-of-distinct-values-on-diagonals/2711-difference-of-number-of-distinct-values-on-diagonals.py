@@ -20,7 +20,6 @@ class Solution:
                 y+=1
             idx=0
             while idx<len(val):
-                print(val,val[:idx],val[idx+1:],idx)
                 result[i+idx][j+idx]=abs(len(set(val[:idx]))-len(set(val[idx+1:])))
                 idx+=1
         return result
