@@ -1,7 +1,7 @@
 class Solution:
     def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
         arr.sort()
-        diff=arr[1]-arr[0]
+        diff=min([abs(arr[i]-arr[i+1]) for i in range(len(arr)-1)])
         result=[]
         for i in range(len(arr)-1):
             n1,n2=arr[i],arr[i+1]
