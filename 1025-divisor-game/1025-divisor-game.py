@@ -1,5 +1,7 @@
 class Solution:
     def divisorGame(self, n: int) -> bool:
+        #solution1
+        '''
         flag=True   #Alice turn
         while n>0:
             num=[i for i in range(1,n) if n%i==0]
@@ -17,3 +19,7 @@ class Solution:
         if flag:
             return False
         return True
+        '''
+
+        #solution2
+        return False if n%2 else True
