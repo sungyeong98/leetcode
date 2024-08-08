@@ -4,7 +4,7 @@ class Solution:
         temp=deque([j for i in grid for j in i])
         result=[[0]*n for _ in range(m)]
         cnt=0
-        while cnt<k:
+        while cnt<k%(m*n):
             temp.appendleft(temp.pop())
             cnt+=1
 
