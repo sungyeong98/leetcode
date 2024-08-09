@@ -7,7 +7,7 @@ class Solution:
 
         def isvalid(board):
             num=[j for i in board for j in i]
-            if len(set(num))!=9:
+            if len(set(num))!=9 or set(num)!=set(range(1,10)):
                 return False
 
             sum_val=0
