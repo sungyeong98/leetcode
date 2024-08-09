@@ -5,5 +5,8 @@ class Solution:
         counter=Counter()
         for word in words:
             counter.update(Counter(word))
-        result=[i for i in counter.values() if ((i>=n and i%n==0) or (i<n and i%2==n%2))]
-        return len(result)==n
+        for i in counter:
+            num=counter[i]
+            if num%n!=0:
+                return False
+        return True
