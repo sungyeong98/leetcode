@@ -1,26 +1,13 @@
 class Solution:
     def twoCitySchedCost(self, costs: List[List[int]]) -> int:
-        n=len(costs)
-        result=int(1e9)
+        n=len(costs)//2
+        result=0
 
-        def backtrack(a,b,a_cnt,b_cnt,cost):
-            nonlocal result
-            if not cost:
-                result=min(result,a+b)
-                return
-            
-            if a_cnt<n//2 and b_cnt<n//2:
-                prices=cost[0]
-                backtrack(a+prices[0],b,a_cnt+1,b_cnt,cost[1:])
-                backtrack(a,b+prices[1],a_cnt,b_cnt+1,cost[1:])
-            
-            elif a_cnt<n//2:
-                prices=cost[0]
-                backtrack(a+prices[0],b,a_cnt+1,b_cnt,cost[1:])
-            
-            else:
-                prices=cost[0]
-                backtrack(a,b+prices[1],a_cnt,b_cnt+1,cost[1:])
-        
-        backtrack(0,0,0,0,costs)
+        costs.sort(key=lambda x:x[0]-x[1])
+
+        for i in range(n):
+            result+=costs[i][0]
+        for i in range(n,2*n):
+            result+=costs[i][1]
+
         return result
