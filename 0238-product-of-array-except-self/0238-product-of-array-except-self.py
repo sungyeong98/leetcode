@@ -1,21 +1,13 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         n=len(nums)
-        save={}
-        result=[]
+        result=[1]*n
+
+        left=right=1
         for i in range(n):
-            left=nums[:i]
-            right=nums[i+1:]
-            mul=1
-            if left:
-                left.sort()
-                if tuple(left) not in save:
-                    save[tuple(left)]=reduce(operator.mul, left, 1)
-                mul*=save[tuple(left)]
-            if right:
-                right.sort()
-                if tuple(right) not in save:
-                    save[tuple(right)]=reduce(operator.mul, right,1)
-                mul*=save[tuple(right)]
-            result.append(mul)
+            result[i]=left
+            left*=nums[i]
+        for i in range(n-1,-1,-1):
+            result[i]*=right
+            right*=nums[i]
         return result
