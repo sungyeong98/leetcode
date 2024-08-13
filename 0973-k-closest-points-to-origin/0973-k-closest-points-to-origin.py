@@ -1,11 +1,14 @@
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         temp={}
-        for x,y in points:
+        for idx,(x,y) in enumerate(points):
             n=math.sqrt(x**2+y**2)
-            temp[(x,y)]=n
+            temp[idx]=n
 
         temp=dict(sorted(temp.items(), key=lambda x:x[1]))
-        result=[i for i in temp.keys()]
-
-        return result[:k]
+        result=[]
+        for i in temp:
+            result.append(points[i])
+            if len(result)==k:
+                break
+        return result
