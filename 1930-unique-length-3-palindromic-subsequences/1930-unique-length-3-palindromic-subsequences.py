@@ -6,16 +6,17 @@ class Solution:
         right=Counter(s[1:])
 
         for i in range(1,n-1):
-            prev_word, word = s[i-1], s[i]
-            next_word = s[i+1]
+            prev_word, word, next_word = s[i-1], s[i], s[i+1]
             left[prev_word]+=1
             right[word]-=1
+            
             if right[word]==0:
                 right.pop(word)
-            
-            if right[prev_word]>0 and prev_word+word+prev_word not in visited:
-                visited.add(prev_word+word+prev_word)
-            if left[next_word]>0 and next_word+word+next_word not in visited:
-                visited.add(next_word+word+next_word)
+            if left[word]==0:
+                left.pop(word)
+
+            for j in set(left.keys())&set(right.keys()):
+                if j+word+j not in visited:
+                    visited.add(j+word+j)
 
         return len(visited)
