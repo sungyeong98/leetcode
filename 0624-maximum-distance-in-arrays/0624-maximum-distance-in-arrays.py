@@ -1,10 +1,12 @@
 class Solution:
     def maxDistance(self, arrays: List[List[int]]) -> int:
-        arrays.sort()
-        left,right=0,0
-        if abs(arrays[0][0])>abs(arrays[0][-1]):
-            left=arrays[0][-1]
-        else:
-            left=arrays[0][0]
+        left, right = arrays[0][0], arrays[0][-1]
+        result=0
+
+        for i in range(1, len(arrays)):
+            arr=arrays[i]
+            result=max(result, abs(arr[-1]-left), abs(right-arr[0]))
+            left=min(left, arr[0])
+            right=max(right, arr[-1])
         
-        return abs(arrays[-1][-1]-left)
+        return result
