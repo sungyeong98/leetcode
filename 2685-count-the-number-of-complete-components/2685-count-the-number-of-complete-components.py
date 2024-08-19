@@ -22,8 +22,7 @@ class Solution:
                         if next_node not in temp:
                             temp.add(next_node)
                             stack.append(next_node)
-                cnt=len(set([len(graph[i]) for i in temp]))
-                if cnt==1:
+                if all(len(graph[i])==len(temp)-1 for i in temp):
                     result+=1
                 
                 visited.update(temp)
