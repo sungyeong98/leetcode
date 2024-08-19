@@ -10,4 +10,4 @@ class Solution:
                 continue
             else:
                 heapq.heappush(heap, (-(x-y),x-y))
-        return heapq.heappop(heap)[1]
+        return heapq.heappop(heap)[1] if heap else 0
