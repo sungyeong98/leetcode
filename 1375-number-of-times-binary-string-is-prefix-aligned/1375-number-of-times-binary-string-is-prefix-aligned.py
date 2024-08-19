@@ -1,16 +1,8 @@
 class Solution:
     def numTimesAllBlue(self, flips: List[int]) -> int:
+        temp=accumulate(flips,max)
         result=0
-        n=len(flips)
-        state=[False]*n
-        check_point=0
-
-        for i in range(n):
-            idx=flips[i]-1
-            state[idx]=True
-            if i+1<=check_point:
+        for idx,val in enumerate(temp,1):
+            if idx==val:
                 result+=1
-            if all(state[:i+1]):
-                result+=1
-                check_point=i+1
         return result
