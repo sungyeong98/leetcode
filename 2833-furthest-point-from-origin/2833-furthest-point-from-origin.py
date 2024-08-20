@@ -1,20 +1,13 @@
 class Solution:
     def furthestDistanceFromOrigin(self, moves: str) -> int:
-        n=len(moves)
+        counter=Counter(moves)
         result=0
-        def move_point(idx, pos):
-            nonlocal result
-            if idx==n:
-                result=max(result,abs(pos))
-                return
-            
-            if moves[idx]=='L':
-                move_point(idx+1, pos-1)
-            elif moves[idx]=='R':
-                move_point(idx+1, pos+1)
-            else:
-                move_point(idx+1, pos-1)
-                move_point(idx+1, pos+1)
-            return
-        move_point(0,0)
+        if counter['L']>counter['R']:
+            result+=(counter['L']-counter['R'])
+            result+=counter['_']
+        elif counter['R']>counter['L']:
+            result+=(counter['R']-counter['L'])
+            result+=counter['_']
+        else:
+            result+=counter['_']
         return result
