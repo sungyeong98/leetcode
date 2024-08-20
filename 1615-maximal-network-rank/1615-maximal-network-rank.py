@@ -1,19 +1,18 @@
 class Solution:
     def maximalNetworkRank(self, n: int, roads: List[List[int]]) -> int:
-        if not roads:
-            return 0
-        graph=defaultdict(list)
+        degree=[0]*n
         for x,y in roads:
-            graph[x].append(y)
-            graph[y].append(x)
+            degree[x]+=1
+            degree[y]+=1
 
+        road_set=set(tuple(i) for i in roads)
         result=0
-        for i in range(n-1):
-            left=set(graph[i])
-            for j in range(i+1,n):
-                right=set(graph[j])
-                if left|right==set([i,j]):
-                    result=max(result,1)
-                else:
-                    result=max(result,len(left|right))
+
+        for i in range(n):
+            for j in range(i+1, n):
+                rank=degree[i]+degree[j]
+                if (i,j) in road_set or (j,i) in road_set:
+                    rank-=1
+                result=max(result,rank)
+        
         return result
