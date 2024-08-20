@@ -1,25 +1,27 @@
 class Solution:
     def stoneGameII(self, piles: List[int]) -> int:
+        if not piles:
+            return 0
         n=len(piles)
-        prefix_sum=[0]*(n+1)
+        dp=[[0]*n for _ in range(n)]
+        suffix=[0]*n
+        suffix[-1]=piles[-1]
 
-        for i in range(n):
-            prefix_sum[i+1]=prefix_sum[i]+piles[i]
-
-        dp=[[0]*(n+1) for _ in range(n+1)]
-
-        def dfs(idx,m):
-            if idx>=n:
+        for i in range(n-2,-1,-1):
+            suffix[i]=piles[i]+suffix[i+1]
+        
+        def helper(i, m):
+            if i==n:
                 return 0
-            if dp[idx][m]>0:
-                return dp[idx][m]
+            if i+2*m>=n:
+                return suffix[i]
+            if dp[i][m]!=0:
+                return dp[i][m]
             
-            max_stone=0
-            for i in range(1,min(2*m, n-idx)+1):
-                stones=prefix_sum[idx+i]-prefix_sum[idx]
+            result=0
+            for x in range(1,2*m+1):
+                result=max(result, suffix[i]-helper(i+x,max(m,x)))
+            dp[i][m]=result
 
-                max_stone=max(max_stone, stones-dfs(idx+i, max(m, i)))
-
-            dp[idx][m]=max_stone
-            return max_stone
-        return dfs(0,1)
+            return result
+        return helper(0,1)
