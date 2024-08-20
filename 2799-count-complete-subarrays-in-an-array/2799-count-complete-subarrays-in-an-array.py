@@ -1,11 +1,17 @@
 class Solution:
     def countCompleteSubarrays(self, nums: List[int]) -> int:
-        target=set(nums)
         n=len(nums)
-        result=0
-        for i in range(n-len(target)+1):
-            for j in range(i+1,n+1):
-                if set(nums[i:j])==target:
-                    result+=(n-j+1)
-                    break
-        return result
+        dis_num=len(set(nums))
+        cnt, left, right = 0, 0, 0
+        counter=Counter()
+        
+        while right<n:
+            counter[nums[right]]+=1
+            while len(counter)==dis_num:
+                counter[nums[left]]-=1
+                if counter[nums[left]]==0:
+                    del counter[nums[left]]
+                left+=1
+                cnt+=(n-right)
+            right+=1
+        return cnt
