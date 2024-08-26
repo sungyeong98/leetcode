@@ -3,7 +3,7 @@ class Solution:
         result=0
         n=len(s)
         for i in range(n-1):
-            temp={'a':0, 'b':0, 'c':0}
+            temp={chr(i):0 for i in range(ord('a'), ord('z')+1)}
             temp[s[i]]+=1
             for j in range(i+1,n):
                 temp[s[j]]+=1
