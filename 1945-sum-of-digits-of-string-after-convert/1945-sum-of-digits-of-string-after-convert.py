@@ -7,4 +7,4 @@ class Solution:
                 temp+=int(i)
             result=str(temp)
             k-=1
-        return result
+        return int(result)
