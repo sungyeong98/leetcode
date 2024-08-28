@@ -1,5 +1,6 @@
 class Solution:
     def minimumRecolors(self, blocks: str, k: int) -> int:
+        blocks=blocks+' '
         q=deque([])
         result=float('inf')
         cnt=0
