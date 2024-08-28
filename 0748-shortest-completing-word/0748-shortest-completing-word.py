@@ -11,7 +11,7 @@ class Solution:
             flag=True
 
             for j in w:
-                if j not in c or w[j]!=c[j]:
+                if j not in c or w[j]>c[j]:
                     flag=False
                     break
             
