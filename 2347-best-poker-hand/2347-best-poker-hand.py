@@ -4,9 +4,9 @@ class Solution:
         shapes=Counter(suits)
         if len(shapes)==1:
             return 'Flush'
-        elif len(nums)<=3:
+        elif max(nums.values())>=3:
             return 'Three of a Kind'
-        elif len(nums)<=4:
+        elif max(nums.values())==2:
             return 'Pair'
         else:
             return 'High Card'
