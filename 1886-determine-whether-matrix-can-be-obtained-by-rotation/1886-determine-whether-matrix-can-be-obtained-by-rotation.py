@@ -1,5 +1,7 @@
 class Solution:
     def findRotation(self, mat: List[List[int]], target: List[List[int]]) -> bool:
+        if mat==target:
+            return True
         n=len(mat)
         def rotate_90(mat):
             temp=[[0]*n for _ in range(n)]
