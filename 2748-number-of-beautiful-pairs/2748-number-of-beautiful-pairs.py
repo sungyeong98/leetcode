@@ -4,7 +4,9 @@ class Solution:
         result=0
 
         for i in range(n-1):
+            n1=int(str(nums[i])[0])
             for j in range(i+1,n):
-                if math.gcd(nums[i],nums[j])==1:
+                n2=int(str(nums[j])[-1])
+                if math.gcd(n1,n2)==1:
                     result+=1
         return result
