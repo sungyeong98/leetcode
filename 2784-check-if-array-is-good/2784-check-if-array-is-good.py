@@ -6,4 +6,7 @@ class Solution:
             return False
         if nums.count(max(nums))!=2:
             return False
+        temp=list(range(1,n))
+        if temp!=nums[:-1]:
+            return False
         return True
