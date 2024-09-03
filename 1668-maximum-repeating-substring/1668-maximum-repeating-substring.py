@@ -1,7 +1,13 @@
 class Solution:
     def maxRepeating(self, sequence: str, word: str) -> int:
-        result=0
-        while word in sequence:
-            result+=sequence.count(word)
-            sequence=sequence.replace(word,'')
-        return result
+        if word not in sequence:
+            return 0
+        
+        left,right=1,len(sequence)
+        while left<=right:
+            mid=(left+right)//2
+            if word*mid in sequence:
+                left=mid+1
+            else:
+                right=mid-1
+        return left-1
