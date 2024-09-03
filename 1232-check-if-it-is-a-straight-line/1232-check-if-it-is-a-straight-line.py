@@ -1,12 +1,4 @@
 class Solution:
     def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
-        n=len(coordinates)
-        temp=None
-        for i in range(n-1):
-            x1,y1=coordinates[i]
-            x2,y2=coordinates[i+1]
-            if temp is None:
-                temp=abs(y2-y1)/abs(x2-x1)
-            elif temp!=abs(y2-y1)/abs(x2-x1):
-                return False
-        return True
+        (x0,y0),(x1,y1)=coordinates[:2]
+        return all((x1-x0)*(y-y1)==(x-x1)*(y1-y0) for x,y in coordinates)
