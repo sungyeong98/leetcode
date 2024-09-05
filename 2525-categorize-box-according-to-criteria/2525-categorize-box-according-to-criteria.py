@@ -3,7 +3,7 @@ class Solution:
         volume=length*width*height
         Bulky,Heavy=False,False
 
-        if volume>=10**9:
+        if volume>=10**9 or length>=10**4 or width>=10**4 or height>=10**4 or mass>=10**4:
             Bulky=True
         if mass>=100:
             Heavy=True
