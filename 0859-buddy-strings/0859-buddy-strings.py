@@ -1,11 +1,19 @@
 class Solution:
     def buddyStrings(self, s: str, goal: str) -> bool:
         n=len(s)
-        s,g=list(s),list(goal)
-        for i in range(n-1):
-            for j in range(i+1,n):
-                temp=list(s)
-                temp[i],temp[j]=temp[j],temp[i]
-                if temp==g:
-                    return True
-        return False
+        if len(goal)!=n:
+            return False
+        if s==goal:
+            temp=set(s)
+            return len(temp)<len(goal)
+        
+        i,j=0,n-1
+        while i<j and s[i]==goal[i]:
+            i+=1
+        while j>=0 and s[j]==goal[j]:
+            j-=1
+        if i<j:
+            s_list=list(s)
+            s_list[i],s_list[j]=s_list[j],s_list[i]
+            s=''.join(s_list)
+        return s==goal
