@@ -15,4 +15,8 @@ class Solution:
             helper(node.right)
         helper(root)
         temp.sort()
-        return temp[1]-temp[0]
+        n=len(temp)
+        result=float('inf')
+        for i in range(n-1):
+            result=min(result,temp[i+1]-temp[i])
+        return result
