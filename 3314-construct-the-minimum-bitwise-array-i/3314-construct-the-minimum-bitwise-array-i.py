@@ -6,6 +6,6 @@ class Solution:
                 if j | (j+1) == i:
                     result.append(j)
                     break
-                else:
-                    result.append(-1)
+            else:
+                result.append(-1)
         return result
