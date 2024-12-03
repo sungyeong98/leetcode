@@ -1,8 +1,6 @@
 class Solution:
     def addSpaces(self, s: str, spaces: List[int]) -> str:
-        result = ''
-        for idx, word in enumerate(s):
-            if idx in spaces:
-                result+=' '
-            result+=word
-        return result
+        result=list(s)
+        for i in spaces:
+            result[i]=' '+result[i]
+        return ''.join(result)
