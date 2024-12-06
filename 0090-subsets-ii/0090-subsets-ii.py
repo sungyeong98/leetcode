@@ -1,12 +1,22 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        result=set()
+        result, temp = [], []
+        n = len(nums)
+        nums.sort()
 
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)+1):
-                result.add(tuple(nums[i:j]))
+        def helper(idx):
+            if n<=idx:
+                result.append(temp[:])
+                return
+            
+            temp.append(nums[idx])
+            helper(idx+1)
+            temp.pop()
+
+            while idx+1<n and nums[idx]==nums[idx+1]:
+                idx+=1
+            
+            helper(idx+1)
         
-        result = list(result)
-        result.append([])
-
+        helper(0)
         return result
