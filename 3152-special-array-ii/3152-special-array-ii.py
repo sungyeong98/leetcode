@@ -1,19 +1,15 @@
 class Solution:
     def isArraySpecial(self, nums: List[int], queries: List[List[int]]) -> List[bool]:
-        temp = ['even' if i%2==0 else 'odd' for i in nums]
-        result = []
+        n = len(nums)
+        prefix, result = [0]*n, []
 
-        for start, end in queries:
-            sublist = temp[start:end+1]
-            if len(sublist)==1:
-                result.append(True)
-                continue
-            start, end = sublist[0], sublist[1]
-            t1 = set([i for i in range(len(sublist)) if i%2==0])
-            t2 = set([i for i in range(len(sublist)) if i%2==1])
-
-            if start in t2 or end in t1 or len(t1)!=1 or len(t2)!=1:
-                result.append(False)
-            else:
-                result.append(True)
+        for i in range(1,n):
+            prefix[i]=prefix[i-1]
+            if (nums[i-1]%2==0 and nums[i]%2==0) or (nums[i-1]%2!=0 and nums[i]%2!=0):
+                prefix[i]+=1
+        
+        for left, right in queries:
+            cnt = prefix[right]-(prefix[left] if left>0 else 0)
+            result.append(cnt==0)
+        
         return result
