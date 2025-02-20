@@ -23,7 +23,7 @@ class Solution:
         return '0'*(n-len(result))+result
         '''
 
-        #solution3
+        #solution3(43ms)
         if nums == ["1"]:
             return "0"
         n = len(nums)
