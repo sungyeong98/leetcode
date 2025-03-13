@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/merge-two-2d-arrays-by-summing-values">2570. Merge Two 2D Arrays by Summing Values</a></h2><h3>Easy</h3><hr><p>You are given two <strong>2D</strong> integer arrays <code>nums1</code> and <code>nums2.</code></p>
+<h2><a href="https://leetcode.com/problems/merge-two-2d-arrays-by-summing-values/?envType=daily-question&envId=2025-03-02">2570. Merge Two 2D Arrays by Summing Values</a></h2><h3>Easy</h3><hr><p>You are given two <strong>2D</strong> integer arrays <code>nums1</code> and <code>nums2.</code></p>
 
 <ul>
 	<li><code>nums1[i] = [id<sub>i</sub>, val<sub>i</sub>]</code>&nbsp;indicate that the number with the id <code>id<sub>i</sub></code> has a value equal to <code>val<sub>i</sub></code>.</li>
@@ -11,7 +11,7 @@
 
 <ul>
 	<li>Only ids that appear in at least one of the two arrays should be included in the resulting array.</li>
-	<li>Each id should be included <strong>only once</strong> and its value should be the sum of the values of this id in the two arrays. If the id does not exist in one of the two arrays then its value in that array is considered to be <code>0</code>.</li>
+	<li>Each id should be included <strong>only once</strong> and its value should be the sum of the values of this id in the two arrays. If the id does not exist in one of the two arrays, then assume its value in that array to be <code>0</code>.</li>
 </ul>
 
 <p>Return <em>the resulting array</em>. The returned array must be sorted in ascending order by id.</p>
